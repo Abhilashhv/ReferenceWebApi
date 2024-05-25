@@ -7,7 +7,7 @@ using Azure.Identity;
 var builder = WebApplication.CreateBuilder(args);
 
 //var keyVaultEndpoint = new Uri("https://courses-keyvault.vault.azure.net/");
-var keyVaultEndpoint = new Uri("https://courses-keyvault.privatelink.vaultcore.azure.net");
+var keyVaultEndpoint = new Uri("http://courses-keyvault.privatelink.vaultcore.azure.net");
 builder.Configuration.AddAzureKeyVault(keyVaultEndpoint, new DefaultAzureCredential());
 
 // Add services to the container.
