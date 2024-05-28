@@ -6,9 +6,13 @@ using Azure.Identity;
 using Microsoft.Data.SqlClient;
 using ReferenceWebApi.Infrastructure;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Identity.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
 //var keyVaultEndpoint = new Uri("https://courses-keyvault.vault.azure.net/");
 //var keyVaultEndpoint = new Uri("http://courses-keyvault.privatelink.vaultcore.azure.net");
 //builder.Configuration.AddAzureKeyVault(keyVaultEndpoint, new DefaultAzureCredential());
@@ -42,6 +46,8 @@ if (app.Environment.IsDevelopment())
 app.UseDeveloperExceptionPage();
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
