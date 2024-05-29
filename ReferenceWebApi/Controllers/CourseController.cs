@@ -8,7 +8,7 @@ namespace ReferenceWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class CourseController : ControllerBase
     {
         private readonly ICourseRepo courseRepo;
